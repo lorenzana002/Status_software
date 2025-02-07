@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelectorAll(".extraActividad").forEach(extra => {
             if (extra.value.trim()) {
-                reporte += `${extra.value.trim()}\n ✅`;
+                reporte += `${extra.value.trim()} ✅\n`;
             }
         });
 
