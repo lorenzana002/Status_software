@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 let texto = chk.dataset.text;
                 let detalle = chk.dataset.detail ? `, ${chk.dataset.detail}` : "";
                 let observacion = prompt(`Observación para "${texto}" (dejar vacío si no hay):`);
-                reporte += `✔ ${texto}${detalle}`;
+                reporte += `${texto}${detalle} ✅`;
                 if (observacion) reporte += `, ${observacion}`;
                 reporte += "\n";
             }
@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         document.querySelectorAll(".extraActividad").forEach(extra => {
             if (extra.value.trim()) {
-                reporte += `✔ ${extra.value.trim()}\n`;
+                reporte += `${extra.value.trim()}\n ✅`;
             }
         });
 
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     todoOkBtn.addEventListener("click", () => {
         let reporte = `Status ${fechaElement.textContent} 2do turno:\n\n`;
         checkboxes.forEach(chk => {
-            reporte += `✔ ${chk.dataset.text}\n`;
+            reporte += `${chk.dataset.text}\n ✅`;
         });
         reporteTextarea.value = reporte;
     });
