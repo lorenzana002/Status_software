@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
     todoOkBtn.addEventListener("click", () => {
         let reporte = `Status ${fechaElement.textContent} 2do turno:\n\n`;
         checkboxes.forEach(chk => {
-            reporte += `${chk.dataset.text}\n ✅`;
+            reporte += `${chk.dataset.text}\n`;
         });
         reporteTextarea.value = reporte;
     });
