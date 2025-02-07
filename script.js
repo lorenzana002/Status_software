@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Generar reporte
     generarReporteBtn.addEventListener("click", () => {
-        let reporte = `Status ${fechaElement.textContent} 2do turno:\n\n`;
+        let reporte = `Status ${fechaElement.textContent} ${obtenerTurno()}:\n\n`;
 
         checkboxes.forEach(chk => {
             if (chk.checked) {
@@ -76,3 +76,55 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Reporte copiado al portapapeles");
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    function actualizarReloj() {
+        let ahora = new Date();
+        let horas = ahora.getHours().toString().padStart(2, '0');
+        let minutos = ahora.getMinutes().toString().padStart(2, '0');
+        let segundos = ahora.getSeconds().toString().padStart(2, '0');
+        document.getElementById("reloj").textContent = `${horas}:${minutos}:${segundos}`;
+    }
+
+    setInterval(actualizarReloj, 1000);
+    actualizarReloj();
+});
+
+function obtenerTurno() {
+    let ahora = new Date();
+    let hora = ahora.getHours();
+
+    return hora >= 0 && hora < 6 ? "3er turno" : "2do turno";
+}
+generarReporteBtn.addEventListener("click", () => {
+    let turno = obtenerTurno();
+    let reporte = `Status ${fechaElement.textContent} ${turno}:\n\n`;
+
+    checkboxes.forEach(chk => {
+        if (chk.checked) {
+            let texto = chk.dataset.text;
+            let detalle = chk.dataset.detail ? `, ${chk.dataset.detail}` : "";
+            let observacion = prompt(`Observación para "${texto}" (dejar vacío si no hay):`);
+
+            if (observacion) {
+                reporte += `* ${texto}${detalle}: ${observacion} ☑️\n\n`;
+            } else {
+                reporte += `* ${texto}${detalle}: OK ☑️\n\n`;
+            }
+        }
+    });
+
+    document.querySelectorAll(".extraActividad").forEach(extra => {
+        if (extra.value.trim()) {
+            reporte += `* ${extra.value.trim()} ☑️\n\n`;
+        }
+    });
+
+    reporteTextarea.value = reporte;
+});
+
+document.getElementById("enviarWhatsApp").addEventListener("click", () => {
+    let texto = encodeURIComponent(reporteTextarea.value);
+    window.open(`https://wa.me/?text=${texto}`, "_blank");
+});
+

@@ -8,33 +8,35 @@
 </head>
 <body>
     <div class="container">
-        <h2>Status Software Version 0.1</h2>
+        <h2>Status Software Version 1.2</h2>
         <h3>Status <span id="fecha"></span> | 2do Turno</h3>
+
+        <div id="reloj" style="font-size: 20px; font-weight: bold;"></div>
 
         <div id="checklist">
             <div class="check-item">
-                <label><input type="checkbox" class="chk" data-text="Portchannel 300GB OK"> Portchannel 300GB OK</label>
+                <label><input type="checkbox" class="chk" data-text="* Portchannel 300GB OK"> Portchannel 300GB OK</label>
                 <button class="add-detail">+</button>
             </div>
             <div class="check-item">
-                <label><input type="checkbox" class="chk" data-text="LinkFlapErr en Fxdiag/Mdiag"> LinkFlapErr en Fxdiag/Mdiag</label>
+                <label><input type="checkbox" class="chk" data-text="* LinkFlapErr en Fxdiag/Mdiag"> LinkFlapErr en Fxdiag/Mdiag</label>
                 <button class="add-detail">+</button>
             </div>
             <div class="check-item">
-                <label><input type="checkbox" class="chk" data-text="LinkFlapErr en BSL OK"> LinkFlapErr en BSL OK</label>
+                <label><input type="checkbox" class="chk" data-text="* LinkFlapErr en BSL OK"> LinkFlapErr en BSL OK</label>
                 <button class="add-detail">+</button>
             </div>
         </div>
         <div class="check-item">
-            <label><input type="checkbox" class="chk" data-text="Cambios de VLAN L7"> Cambios de VLAN L7</label>
+            <label><input type="checkbox" class="chk" data-text="* Cambios de VLAN L7"> Cambios de VLAN L7</label>
             <button class="add-detail">+</button>
         </div>
         <div class="check-item">
-            <label><input type="checkbox" class="chk" data-text="Revisión de Zabbix"> Revisión de Zabbix</label>
+            <label><input type="checkbox" class="chk" data-text="* Revisión de Zabbix"> Revisión de Zabbix</label>
             <button class="add-detail">+</button>
         </div>
         <div class="check-item">
-            <label><input type="checkbox" class="chk" data-text="Revisión de pantallas"> Revisión de pantallas</label>
+            <label><input type="checkbox" class="chk" data-text="* Revisión de pantallas"> Revisión de pantallas</label>
             <button class="add-detail">+</button>
         </div>   
         
@@ -49,7 +51,9 @@
         <h3>Reporte Generado</h3>
         <textarea id="reporte" readonly></textarea>
         <button id="copiarReporte">Copiar Reporte</button>
+        <button id="enviarWhatsApp">Enviar por WhatsApp</button>
     </div>
+
     <h5>Derechos reservados @Azael_Lorenzana
     </h5>
     <h6>Comentarios, favor de enviar correo a wlaw.trafalgar22@gmail.com</h6>
