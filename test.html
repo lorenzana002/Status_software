@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .container { width: 80%; margin: auto; }
+        .check-item { margin-bottom: 10px; }
+        .hidden { display: none; }
+        .rounded-box { border-radius: 10px; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Bitácora - <span id="turno"></span></h2>
+        <div id="checklist">
+            <div class="check-item rounded-box">
+                <input type="checkbox" id="check1" onchange="toggleObservacion('obs1')"> Revisión de switch principal
+                <button onclick="agregarDetalle('obs1')">+</button>
+                <input type="text" id="obs1" class="hidden" placeholder="Observación">
+            </div>
+            <div class="check-item rounded-box">
+                <input type="checkbox" id="check2" onchange="toggleObservacion('obs2')"> Revisión de enlaces de red
+                <button onclick="agregarDetalle('obs2')">+</button>
+                <input type="text" id="obs2" class="hidden" placeholder="Observación">
+            </div>
+        </div>
+        <button onclick="marcarTodoOk()">Todo OK</button>
+        <button onclick="generarReporte()">Generar Reporte</button>
+        <textarea id="reporte" rows="6" cols="50" readonly></textarea>
+    </div>
+
+    <script>
+        function actualizarTurno() {
+            const horaActual = new Date().getHours();
+            let turno = "";
+            if ((horaActual >= 15 && horaActual < 23) || (horaActual === 23 && new Date().getMinutes() < 55)) {
+                turno = "2do turno";
+            } else if ((horaActual >= 0 && horaActual < 6) || (horaActual === 6 && new Date().getMinutes() <= 20)) {
+                turno = "3er turno";
+            } else {
+                turno = "Fuera de turno";
+            }
+            document.getElementById("turno").innerText = turno;
+        }
+
+        function toggleObservacion(id) {
+            let obs = document.getElementById(id);
+            obs.classList.toggle("hidden", !document.getElementById(id.replace("obs", "check")).checked);
+        }
+
+        function agregarDetalle(id) {
+            document.getElementById(id).classList.remove("hidden");
+        }
+
+        function marcarTodoOk() {
+            document.querySelectorAll("input[type='checkbox']").forEach(chk => chk.checked = true);
+            document.querySelectorAll(".hidden").forEach(el => el.classList.remove("hidden"));
+        }
+
+        function generarReporte() {
+            let reporte = `*Bitácora - ${document.getElementById("turno").innerText}*\n\n`;
+            document.querySelectorAll(".check-item").forEach(item => {
+                let checkbox = item.querySelector("input[type='checkbox']");
+                let observacion = item.querySelector("input[type='text']").value.trim();
+                if (checkbox.checked) {
+                    reporte += `* ${checkbox.nextSibling.textContent.trim()} ☑️`;
+                    if (observacion) reporte += ` - ${observacion}`;
+                    reporte += "\n\n";
+                }
+            });
+            document.getElementById("reporte").value = reporte;
+        }
+
+        actualizarTurno();
+        setInterval(actualizarTurno, 60000); 
+    </script>
+</body>
+</html>
