@@ -49,6 +49,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (observacion) reporte += `, ${observacion}`;
                 reporte += "\n";
             }
+   /* Borrar si es necesario, hasta linea 84 */
+   function guardarHistorial(reporte) {
+    let historial = JSON.parse(localStorage.getItem("historial")) || [];
+    historial.push(reporte);  
+    localStorage.setItem("historial", JSON.stringify(historial));  
+}
+
+document.getElementById("todoOk").addEventListener("click", function() {
+    let fechaElement = document.getElementById("fecha").textContent;
+    let turnoElement = document.getElementById("turno").textContent;
+   
+    let reporte = `Status ${fechaElement} ${turnoElement}\n\n`;
+
+    let checklist = [
+        "Portchannel 300GB: OK",
+        "LinkFlapErr en Fxdiag/Mdiag: OK",
+        "LinkFlapErr en BSL: OK",
+        "Cambios de VLAN L7",
+        "Revisión de Zabbix",
+        "Revisión de pantallas",
+        "Revisión de equipo captivo"
+    ];
+
+    checklist.forEach(item => {
+        reporte += `* ${item} ☑️\n\n`;
+    });
+
+    document.getElementById("contenidoReporte").textContent = reporte;
+
+    copiarAlPortapapeles(reporte);
+    guardarHistorial(reporte); // Guardar en historial
+});
+            /* Borrar si es necesario, hasta linea 53 */
+            
         });
 
         document.querySelectorAll(".extraActividad").forEach(extra => {
@@ -126,5 +160,7 @@ generarReporteBtn.addEventListener("click", () => {
 document.getElementById("enviarWhatsApp").addEventListener("click", () => {
     let texto = encodeURIComponent(reporteTextarea.value);
     window.open(`https://wa.me/?text=${texto}`, "_blank");
+
+    guardarHistorial(reporte);
 });
 
