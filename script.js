@@ -164,27 +164,3 @@ document.getElementById("enviarWhatsApp").addEventListener("click", () => {
     guardarHistorial(reporte);
 });
 
-/* */
-    document.addEventListener("DOMContentLoaded", function () {
-        let gatito = document.getElementById("gatito");
-        let posX = 0;
-        let direccion = 1; // 1 = Derecha, -1 = Izquierda
-        let velocidad = 2; // Velocidad del movimiento
-
-        function moverGatito() {
-            let anchoPagina = window.innerWidth - gatito.width;
-
-            if (posX >= anchoPagina || posX <= 0) {
-                direccion *= -1; // Cambia la dirección
-                gatito.style.transform = scaleX(${direccion}); // Voltea la imagen
-            }
-
-            posX += velocidad * direccion;
-            gatito.style.left = posX + "px";
-
-            requestAnimationFrame(moverGatito);
-        }
-
-        moverGatito();
-    });
-
