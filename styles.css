@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     text-align: center;
-    background: url(server002.jpg) no-repeat center center fixed;
+    background: url(servers.webp) no-repeat center center fixed;
     background-size: cover;
 }
 
@@ -120,3 +120,16 @@ textarea {
     color: #ffcc00; /* Cambia el color de 'Reporte Generado' */
     text-align: center;
 }
+
+#gatito {
+    position: absolute;
+    width: 100px; /* Ajusta el tamaño */
+    bottom: 10px; /* Lo mantiene cerca del suelo */
+    left: 0;
+    transition: transform 0.2s; /* Suaviza el volteo */
+    z-index: 9999; /* Para que esté por encima del contenido */
+    pointer-events: none; /* Evita que interfiera con clics */
+}
+
+
+
