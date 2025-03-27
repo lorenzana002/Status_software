@@ -147,7 +147,7 @@ generarReporteBtn.addEventListener("click", () => {
             }
         }
     });
-*/
+
     document.querySelectorAll(".extraActividad").forEach(extra => {
         if (extra.value.trim()) {
             reporte += `* ${extra.value.trim()} ☑️\n\n`;
@@ -156,11 +156,12 @@ generarReporteBtn.addEventListener("click", () => {
 
     reporteTextarea.value = reporte;
 });
-
-document.getElementById("enviarWhatsApp").addEventListener("click", () => {
+*/
+// Borrar    
+/* document.getElementById("enviarWhatsApp").addEventListener("click", () => {
     let texto = encodeURIComponent(reporteTextarea.value);
     window.open(`https://wa.me/?text=${texto}`, "_blank");
 
     guardarHistorial(reporte);
 });
-
+*/
