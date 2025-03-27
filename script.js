@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Agregar actividades extras (máximo 5)
     let extraCount = 0;
     agregarCampoBtn.addEventListener("click", () => {
-        if (extraCount < 5) {
+        if (extraCount < 10) {
             const input = document.createElement("input");
             input.type = "text";
             input.className = "extraActividad";
@@ -133,7 +133,7 @@ function obtenerTurno() {
 generarReporteBtn.addEventListener("click", () => {
     let turno = obtenerTurno();
     let reporte = `Status ${fechaElement.textContent} ${turno}:\n\n`;
-
+/*
     checkboxes.forEach(chk => {
         if (chk.checked) {
             let texto = chk.dataset.text;
@@ -147,7 +147,7 @@ generarReporteBtn.addEventListener("click", () => {
             }
         }
     });
-
+*/
     document.querySelectorAll(".extraActividad").forEach(extra => {
         if (extra.value.trim()) {
             reporte += `* ${extra.value.trim()} ☑️\n\n`;
